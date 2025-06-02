@@ -141,7 +141,7 @@ div.innerHTML = `
         </span>
 
         <div class="flex-grow">
-          <p class="text-sm text-white/70 tracking-wide font-medium uppercase">
+          <p class="text-sm text-white/70 tracking-wide font-medium">
             ${(card.extra?.Year || card.year || '')} ${(card.extra?.Set || card.set || '')}
           </p>
           <h2 class="text-xl font-bold leading-snug text-white mt-1">
@@ -414,7 +414,9 @@ async function loadAndRenderSet(year, set, parallel = "") {
         name: obj["Card Name"],
         parallel: obj["Parallel"] || "",
         hit: (obj["Hit"] || obj["One of One Hit"])?.toString().toLowerCase() === "true",
-        extra
+        extra,
+        year: extra["Year"] || "",
+        set: extra["Set"] || ""
       };
     });
 
