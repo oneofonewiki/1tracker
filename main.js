@@ -64,6 +64,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (selectedYear && selectedSet) {
       await loadAndRenderSet(selectedYear, selectedSet, selectedParallel);
+      currentData = currentData.filter(card => selectedParallel === "All Parallels" || card.parallel === selectedParallel);
+      renderCards(currentData);
     }
   });
 
