@@ -113,7 +113,7 @@ document.getElementById("parallel-select").addEventListener("change", () => {
     renderCards(currentData);
   } else {
     const filtered = currentData.filter(card => {
-      return card["Parallel"] && card["Parallel"].toLowerCase() === selectedParallel.toLowerCase();
+      return card.parallel && card.parallel.toLowerCase() === selectedParallel.toLowerCase();
     });
     renderCards(filtered);
   }
