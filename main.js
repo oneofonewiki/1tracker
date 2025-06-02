@@ -85,12 +85,3 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-window.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("parallel-select").addEventListener("change", () => {
-    if (currentData.length > 0) {
-      renderCards(currentData);
-    } else if (globalData.length > 0) {
-      renderCards(globalData);
-    }
-  });
-});
