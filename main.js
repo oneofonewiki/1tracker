@@ -57,8 +57,14 @@ document.addEventListener("DOMContentLoaded", function () {
     else if (globalData.length > 0) renderCards(globalData);
   });
 
-  document.getElementById("parallel-select").addEventListener("change", () => {
-    if (currentData.length > 0) renderCards(currentData);
+  document.getElementById("parallel-select").addEventListener("change", async () => {
+    const selectedYear = document.getElementById("year-select").value;
+    const selectedSet = document.getElementById("set-select").value;
+    const selectedParallel = document.getElementById("parallel-select").value;
+
+    if (selectedYear && selectedSet) {
+      await loadAndRenderSet(selectedYear, selectedSet, selectedParallel);
+    }
   });
 
   document.getElementById("reset-search").addEventListener("click", () => {
