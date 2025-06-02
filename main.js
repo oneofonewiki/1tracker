@@ -57,6 +57,8 @@ document.addEventListener("DOMContentLoaded", function () {
     else if (globalData.length > 0) renderCards(globalData);
   });
 
+
+
   document.getElementById("parallel-select").addEventListener("change", async () => {
     const selectedYear = document.getElementById("year-select").value;
     const selectedSet = document.getElementById("set-select").value;
@@ -80,5 +82,15 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("result-list").innerHTML = "";
     currentData = [];
     globalData = [];
+  });
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("parallel-select").addEventListener("change", () => {
+    if (currentData.length > 0) {
+      renderCards(currentData);
+    } else if (globalData.length > 0) {
+      renderCards(globalData);
+    }
   });
 });
