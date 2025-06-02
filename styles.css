@@ -1,0 +1,148 @@
+/* ========== General Layout ========== */
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  padding: 1rem;
+  line-height: 1.5;
+}
+
+h2 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #9ca3af;
+  margin-bottom: 0.5rem;
+}
+
+select,
+input[type="text"],
+button {
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  font-size: 1rem;
+}
+
+input[type="text"] {
+  border: 1px solid #9ca3af;
+  color: #000;
+}
+
+select {
+  border: 1px solid #9ca3af;
+  background-color: #fff;
+  color: #000;
+}
+
+button {
+  background-color: #d1d5db;
+  color: #000;
+  font-weight: 600;
+}
+
+button:hover {
+  background-color: #9ca3af;
+}
+
+label {
+  font-weight: 500;
+}
+
+/* ========== Autocomplete Dropdown ========== */
+#autocomplete-suggestions {
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  background-color: #fff;
+  color: #000;
+  max-height: 12rem;
+  overflow-y: auto;
+  font-size: 0.875rem;
+}
+
+/* ========== Results Grid ========== */
+#result-list {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+
+/* ========== Result Card Styling (inherits Tailwind structure) ========== */
+.card {
+  border-radius: 1rem;
+  padding: 1rem;
+  background: linear-gradient(to bottom right, #1f2937, #000);
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+  color: white;
+  font-weight: 500;
+  position: relative;
+}
+
+.card .badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #f43f5e;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+}
+
+/* ========== Chase Card Spotlight ========== */
+#chase-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.chase-card {
+  border-radius: 1.5rem;
+  overflow: hidden;
+  background: #111;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  flex: 1 1 300px;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chase-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.chase-card .label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #fcd34d;
+  margin-bottom: 0.25rem;
+}
+
+.chase-card .title {
+  font-size: 1.125rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.chase-card .button {
+  margin-top: auto;
+  padding: 0.5rem 1rem;
+  background-color: #10b981;
+  color: white;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.chase-card .button:hover {
+  background-color: #059669;
+}
