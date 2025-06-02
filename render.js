@@ -374,3 +374,43 @@ if (statsPool.length > 0) {
 }
   
 }
+
+// Added: loadAndRenderSet helper
+async function loadAndRenderSet(year, set, parallel = "") {
+  const config = SETS[year]?.[set];
+  if (!config) return;
+
+  try {
+    const response = await fetch(config.url);
+    const text = await response.text();
+    const json = JSON.parse(text.substring(47).slice(0, -2));
+    const cols = json.table.cols.map(c => c.label);
+    const rows = json.table.rows;
+
+    const data = rows.map(row => {
+      const obj = {};
+      cols.forEach((col, idx) => {
+        obj[col] = row.c[idx]?.v ?? "";
+      });
+
+      const extra = {};
+      for (const [key, value] of Object.entries(obj)) {
+        if (!["Card Name", "Parallel"].includes(key)) {
+          extra[key] = value;
+        }
+      }
+
+      return {
+        name: obj["Card Name"],
+        parallel: obj["Parallel"] || "",
+        hit: (obj["Hit"] || obj["One of One Hit"])?.toString().toLowerCase() === "true",
+        extra
+      };
+    });
+
+    currentData = data;
+    renderCards(data);
+  } catch (err) {
+    console.error("Error loading set:", err);
+  }
+}
