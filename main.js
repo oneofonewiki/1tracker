@@ -57,8 +57,6 @@ document.addEventListener("DOMContentLoaded", function () {
     else if (globalData.length > 0) renderCards(globalData);
   });
 
-
-
   document.getElementById("parallel-select").addEventListener("change", async () => {
     const selectedYear = document.getElementById("year-select").value;
     const selectedSet = document.getElementById("set-select").value;
@@ -66,8 +64,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (selectedYear && selectedSet) {
       await loadAndRenderSet(selectedYear, selectedSet, selectedParallel);
-      currentData = currentData.filter(card => selectedParallel === "All Parallels" || card.parallel === selectedParallel);
-      renderCards(currentData);
     }
   });
 
@@ -84,4 +80,3 @@ document.addEventListener("DOMContentLoaded", function () {
     globalData = [];
   });
 });
-

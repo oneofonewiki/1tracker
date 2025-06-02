@@ -70,7 +70,6 @@ function populateDropdowns() {
         const parallelSelect = document.getElementById("parallel-select");
         parallelSelect.innerHTML = `<option value="">Select Parallel</option><option value="All Parallels">All Parallels</option>` +
           uniqueParallels.map(p => `<option value="${p}">${p}</option>`).join("");
-        parallelSelect.value = ""; // Force placeholder selection
         parallelSelect.disabled = false;
 
         window.allFighterNames = [...new Set(currentData.map(c => c.name.trim().toLowerCase()).filter(Boolean))];
@@ -105,16 +104,3 @@ function renderSetBubbles() {
     });
   });
 }
-
-document.getElementById("parallel-select").addEventListener("change", () => {
-  const selectedParallel = document.getElementById("parallel-select").value;
-
-  if (!selectedParallel || selectedParallel === "All Parallels") {
-    renderCards(currentData);
-  } else {
-    const filtered = currentData.filter(card => {
-      return card.parallel && card.parallel.toLowerCase() === selectedParallel.toLowerCase();
-    });
-    renderCards(filtered);
-  }
-});
