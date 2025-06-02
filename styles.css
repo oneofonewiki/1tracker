@@ -8,8 +8,8 @@ body {
 }
 
 #tracker-wrapper {
-  max-width: 1280px;
-  margin: 0 auto;
+   max-width: 1200px !important;
+  margin: 0 auto !important;
 }
 
 h2 {
