@@ -70,6 +70,7 @@ function populateDropdowns() {
         const parallelSelect = document.getElementById("parallel-select");
         parallelSelect.innerHTML = `<option value="">Select Parallel</option><option value="All Parallels">All Parallels</option>` +
           uniqueParallels.map(p => `<option value="${p}">${p}</option>`).join("");
+        parallelSelect.value = ""; // Force placeholder selection
         parallelSelect.disabled = false;
 
         window.allFighterNames = [...new Set(currentData.map(c => c.name.trim().toLowerCase()).filter(Boolean))];
