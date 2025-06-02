@@ -16,6 +16,7 @@ function populateDropdowns() {
     setSelect.disabled = true;
 
     const parallelSelect = document.getElementById("parallel-select");
+    parallelSelect.innerHTML = '<option value="">Select Parallel</option><option value="All Parallels">All Parallels</option>';
     parallelSelect.disabled = true;
 
     if (!selectedYear || !SETS[selectedYear]) return;
@@ -68,7 +69,7 @@ function populateDropdowns() {
 
         const uniqueParallels = [...new Set(currentData.map(card => card.parallel).filter(Boolean))];
         const parallelSelect = document.getElementById("parallel-select");
-        parallelSelect.innerHTML = `<option value="">Select Parallel</option><option value="All Parallels">All Parallels</option>` +
+        parallelSelect.innerHTML = `<option value="">All Parallels</option>` +
           uniqueParallels.map(p => `<option value="${p}">${p}</option>`).join("");
         parallelSelect.disabled = false;
 
