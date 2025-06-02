@@ -358,11 +358,11 @@ box.className = `
   } else if (query && selectedSet) {
     label = `${query} (${selectedSet})`;
   } else if (query && !selectedSet && !selectedParallel) {
-  const bestMatch = [...new Set(filtered.map(c => c.name))].find(name =>
-    name.toLowerCase().includes(query)
-  );
-  label = bestMatch || query;
-}
+    const bestMatch = [...new Set(filtered.map(c => c.name))].find(name =>
+      name.toLowerCase().includes(query)
+    );
+    label = bestMatch || query;
+  }
 
 if (statsPool.length > 0) {
   const total = statsPool.length;
