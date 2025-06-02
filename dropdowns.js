@@ -71,6 +71,7 @@ function populateDropdowns() {
         const parallelSelect = document.getElementById("parallel-select");
         parallelSelect.innerHTML = `<option value="">All Parallels</option>` +
           uniqueParallels.map(p => `<option value="${p}">${p}</option>`).join("");
+        parallelSelect.disabled = false;
 
         window.allFighterNames = [...new Set(currentData.map(c => c.name.trim().toLowerCase()).filter(Boolean))];
         setupAutocomplete();
