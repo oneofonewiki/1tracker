@@ -12,7 +12,9 @@ function renderCards(data) {
 let filtered = data.filter(card => {
   if (card.extra["Exclude"] === true) return false;
 
-  const haystack = `${card.name} ${card.parallel} ${card.extra.Year} ${card.extra.Set}`.toLowerCase();
+  const setName = card.extra?.Set || card.set || '';
+  const year = card.extra?.Year || card.year || '';
+  const haystack = `${card.name} ${card.parallel} ${year} ${setName}`.toLowerCase();
   const match = searchWords.every(word => haystack.includes(word));
   const unhit = !filterUnhit || !card.hit;
   const parallelMatch = !selectedParallel || selectedParallel === "All Parallels" || card.parallel === selectedParallel;
@@ -46,11 +48,15 @@ const isGlobalSearch = !selectedYear && !selectedSet && query;
 
 if (isGlobalSearch) {
   filtered.sort((a, b) => {
+    const aSetName = a.extra?.Set || a.set || '';
+    const aYear = a.extra?.Year || a.year || '';
+    const bSetName = b.extra?.Set || b.set || '';
+    const bYear = b.extra?.Year || b.year || '';
     const aDate = new Date(
-      SETS[a.extra.Year]?.[a.extra.Set]?.releaseDate || "2000-01-01"
+      SETS[aYear]?.[aSetName]?.releaseDate || "2000-01-01"
     );
     const bDate = new Date(
-      SETS[b.extra.Year]?.[b.extra.Set]?.releaseDate || "2000-01-01"
+      SETS[bYear]?.[bSetName]?.releaseDate || "2000-01-01"
     );
 
     // Newest set first
@@ -65,7 +71,9 @@ if (filtered.length > 200) {
 const statsPool = data.filter(card => {
   if (card.extra["Exclude"] === true) return false;
 
-  const haystack = `${card.name} ${card.parallel} ${card.extra.Year} ${card.extra.Set}`.toLowerCase();
+  const setName = card.extra?.Set || card.set || '';
+  const year = card.extra?.Year || card.year || '';
+  const haystack = `${card.name} ${card.parallel} ${year} ${setName}`.toLowerCase();
   const match = searchWords.every(word => haystack.includes(word));
   const parallelMatch = !selectedParallel || selectedParallel === "All Parallels" || card.parallel === selectedParallel;
   return match && parallelMatch;
@@ -134,7 +142,7 @@ div.innerHTML = `
 
         <div class="flex-grow">
           <p class="text-sm text-white/70 tracking-wide font-medium uppercase">
-            ${card.extra["Year"]} ${card.extra["Set"]}
+            ${(card.extra?.Year || card.year || '')} ${(card.extra?.Set || card.set || '')}
           </p>
           <h2 class="text-xl font-bold leading-snug text-white mt-1">
             ${card.name}
@@ -191,17 +199,19 @@ div.innerHTML = `
 <div class="flip-card-back bg-slate-800 text-white p-4 rounded-xl h-full text-sm flex flex-col justify-start overflow-y-hidden group-[.flipped]:overflow-y-auto">
   ${(() => {
     const fighterName = card.name.split("/").map(n => n.trim())[0];
-    const year = card.extra.Year;
-    const set = card.extra.Set;
+    const year = card.extra?.Year || card.year || '';
+    const set = card.extra?.Set || card.set || '';
 
     // Gather all cards by this fighter in this set
 const relatedSource = currentData.length > 0 ? currentData : globalData;
 const related = relatedSource.filter(c => {
   const names = c.name.toLowerCase().split("/").map(n => n.trim());
+  const cYear = c.extra?.Year || c.year || '';
+  const cSet = c.extra?.Set || c.set || '';
   return (
     names.includes(fighterName.toLowerCase()) &&
-    c.extra.Year === year &&
-    c.extra.Set === set
+    cYear === year &&
+    cSet === set
   );
 });
 
